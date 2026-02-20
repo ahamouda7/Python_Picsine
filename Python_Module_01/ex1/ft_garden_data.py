@@ -18,3 +18,4 @@ cactus = Plant("cactus", 15, 120)
 if __name__ == "__main__":
     for plant in Plant.plants:
         print(f"{plant.name}: {plant.height}cm, {plant.age} days old")
+
