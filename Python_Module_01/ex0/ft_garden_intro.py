@@ -1,4 +1,3 @@
-
 class Plant:
 
     def __init__(self, name, height, age):

@@ -51,25 +51,26 @@ class GardenManager:
         print(f"Added {plant.name} to {self.owner}'s garden")
 
     def grow_all(self, amount):
-        print(f"{self.owner} is helping all plants grow...")
+        print(f"\n{self.owner} is helping all plants grow...")
         for plant in self.plants:
             plant.grow(amount)
             print(f"{plant.name} grew {amount}cm")
 
     def generate_report(self):
-        print(f"=== {self.owner}'s Garden Report ===")
+        print(f"\n=== {self.owner}'s Garden Report ===")
         print("Plants in garden:")
         for plant in self.plants:
             print(plant)
-            
+
         stats = self.GardenStats(self.plants)
         total_added = len(self.plants)
-        
+
         print(f"\nPlants added: {total_added}, Total growth: {total_added}cm")
-        
+
         reg, flow, prize = stats.count_types()
-        print(f"Plant types: {reg} regular, {flow} flowering, {prize} prize flowers")
-        
+        print(f"Plant types: {reg} regular, {flow} flowering, "
+              f"{prize} prize flowers")
+
         print(f"\nHeight validation test: {self.validate_height(101)}")
 
     @staticmethod
@@ -84,17 +85,15 @@ class GardenManager:
 
 if __name__ == "__main__":
     print("=== Garden Management System Demo ===\n")
-    
+
     alice_garden = GardenManager("Alice")
-    bob_garden = GardenManager("Bob") 
-    
+    bob_garden = GardenManager("Bob")
+
     alice_garden.add_plant(Plant("Oak Tree", 100))
     alice_garden.add_plant(FloweringPlant("Rose", 25, "red"))
     alice_garden.add_plant(PrizeFlower("Sunflower", 50, "yellow", 10))
-    print()
-    
+
     alice_garden.grow_all(1)
-    print()
-    
+
     alice_garden.generate_report()
     GardenManager.create_garden_network()
