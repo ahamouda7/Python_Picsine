@@ -1,6 +1,4 @@
 
-import math
-
 class Plant:
 
     def __init__(self, name, height, age):
@@ -27,7 +25,7 @@ class Tree(Plant):
 
 	def produce_shade(self):
 		radius = self.trunk_diameter / 10
-		shade_area = int(math.pi * (radius ** 2))
+		shade_area = int(3.14 * (radius ** 2))
 		print(f"{self.name} provides {shade_area} square meters of shade")
 
 
