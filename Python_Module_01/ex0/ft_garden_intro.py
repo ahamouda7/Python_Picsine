@@ -1,6 +1,6 @@
 class Plant:
 
-    def __init__(self, name, height, age):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
@@ -15,8 +15,3 @@ if __name__ == "__main__":
     print(f"Height: {rose.height}cm")
     print(f"Age: {rose.age} days\n")
     print("=== End of Program ===")
-
-# (Shebang #!) line: "#!/usr/bin/env python3"
-# Makes our file executable
-# Needs only to change its mode (chmod +x file.py)
-# Then you can run it with ./file.py

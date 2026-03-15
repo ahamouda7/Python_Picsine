@@ -1,28 +1,39 @@
 class Plant:
-    def __init__(self, name, height, age):
+    plants = []
+
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.agee = age
+        Plant.plants.append(self)
 
-    def grow(self):
+    def grow(self) -> None:
         self.height += 6
 
-    def age(self):
+    def age(self) -> None:
         self.agee += 6
 
-    def get_info(self):
+    def get_info(self) -> str:
         return f"{self.name}: {self.height}cm, {self.agee} days old"
 
 
 rose = Plant("rose", 25, 30)
+sunflower = Plant("sunflower", 80, 45)
+cactus = Plant("cactus", 15, 120)
 
 if __name__ == "__main__":
-    rose.name = rose.name.capitalize()
-    print("=== Day 1 ===")
-    print(rose.get_info())
+    i = 1
+    for p in Plant.plants:
+        if i > 1:
+            print()
+        print(f"Plant [{i}]:")
+        print("=== Day 1 ===")
+        p.name = p.name.capitalize()
+        print(p.get_info())
 
-    rose.grow()
-    rose.age()
+        p.grow()
+        p.age()
 
-    print("=== Day 7 ===")
-    print(rose.get_info())
+        print("=== Day 7 ===")
+        print(p.get_info())
+        i += 1
