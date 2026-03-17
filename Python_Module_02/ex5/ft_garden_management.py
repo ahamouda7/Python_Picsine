@@ -11,16 +11,19 @@ class ValueError(GardenError):
 
 
 class GardenManager:
+    plants = []
+
     def __init__(self, name: str, water: int, sun: int) -> None:
         self.name = name
         self.water = water
         self.sun = sun
+        self.plants.append(self.name)
 
     def add_plant(self) -> None:
         self.check_plant_health("plant_name", 1)
 
-    def water_plants(plant_list: list[str]) -> None:
-        my_plants = ["tomato", "lettuce", "carrots"]
+    def water_plants(self, plant_list: list[str]) -> None:
+        my_plants = self.plants
         try:
             i = 0
             while i < len(plant_list):
@@ -99,7 +102,7 @@ def test_garden_management() -> None:
 
     print("Watering plants...")
     print("Opening watering system")
-    GardenManager.water_plants([tomato.name, lettuce.name])
+    GardenManager.water_plants(GardenManager, [tomato.name, lettuce.name])
     print()
 
     print("Checking plant health...")
