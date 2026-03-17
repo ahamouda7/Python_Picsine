@@ -1,11 +1,4 @@
 def garden_operations() -> None:
-    try:
-        21 / 0
-    except Exception:
-        print("Caught an error, but program continues!")
-
-
-def test_error_types() -> None:
     print("Testing ValueError...")
     try:
         int("abc")
@@ -36,6 +29,13 @@ def test_error_types() -> None:
     print()
 
     print("Testing multiple errors together...")
+    try:
+        21 / 0
+    except Exception:
+        print("Caught an error, but program continues!")
+
+
+def test_error_types() -> None:
     garden_operations()
 
 

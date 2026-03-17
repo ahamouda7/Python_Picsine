@@ -72,7 +72,7 @@ class GardenManager:
                     raise ValueError(
                         f"Sunlight hours {self.sun} is too high (max 12)"
                     )
-                if self.water < 1 and self.sun > 10:
+                if self.water >= 1 and self.water <= 10:
                     print(f"{self.name}: healthy "
                           f"(water: {self.water}, sun: {self.sun})")
             except ValueError as e:

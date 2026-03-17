@@ -4,6 +4,7 @@ class PlantNotFound(Exception):
 
 def water_plants(plant_list: list[str]) -> None:
     my_plants = ["tomato", "lettuce", "carrots"]
+    isdone = 0
     try:
         i = 0
         while i < len(plant_list):
@@ -16,11 +17,13 @@ def water_plants(plant_list: list[str]) -> None:
             if j == len(my_plants):
                 raise PlantNotFound("Cannot water None - invalid plant!")
             i += 1
-        print("Watering completed successfully!")
+        isdone = 1
     except PlantNotFound as e:
         print(f"Error: {e}")
     finally:
         print("Closing watering system (cleanup)")
+        if isdone == 1:
+            print("Watering completed successfully!")
 
 
 def test_watering_system() -> None:
