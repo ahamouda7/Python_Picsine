@@ -5,22 +5,21 @@ class InvalidSyntax(Exception):
     pass
 
 
-def length(user_input: list) -> int:
+def length(a_list: list[str]) -> int:
     len = 0
-    for i in user_input:
+    for i in a_list:
         len += 1
-    print(len)
     return len
 
 
-def get_player_pos() -> tuple:
+def get_player_pos() -> tuple[float, float, float]:
     error = 1
     while error == 1:
         try:
-            user_input = tuple(input("Enter new coordinates as floats "
-                                     "in format 'x,y,z': ").split(","))
+            user_input = input("Enter new coordinates as floats "
+                               "in format 'x,y,z': ").split(",")
             if length(user_input) != 3:
-                raise InvalidSyntax()
+                raise InvalidSyntax("Invalid syntax")
             cord_list = []
             for cord in user_input:
                 cord_list.append(float(cord.strip()))
@@ -35,8 +34,8 @@ def get_player_pos() -> tuple:
                           "could not convert string to float: '{cord}'")
                     error = 1
                     break
-        except InvalidSyntax:
-            print("Invalid syntax")
+        except InvalidSyntax as e:
+            print(e)
     return coordinates
 
 

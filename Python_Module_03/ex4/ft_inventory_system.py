@@ -21,6 +21,7 @@ def item_value(item: str) -> str:
         i += 1
     return value
 
+
 def isnumber(item: str) -> int:
     i = 0
     while i < len(item):
@@ -30,7 +31,7 @@ def isnumber(item: str) -> int:
     return 1
 
 
-def isvalid(item: str, my_list: list) -> int:
+def isvalid(item: str, my_list: list[str]) -> int:
     i = 0
     if my_item(item) in my_list:
         return 2
@@ -43,7 +44,7 @@ def isvalid(item: str, my_list: list) -> int:
     return 1
 
 
-def valid_list() -> dict:
+def valid_list() -> dict[str, str]:
     i = 1
     my_list = []
     dictionary = {}
@@ -55,7 +56,8 @@ def valid_list() -> dict:
         elif isvalid(sys.argv[i], my_list) == 2:
             print(f"Redundant item '{name}' - discarding")
         elif isvalid(sys.argv[i], my_list) == -1:
-            print(f"Quantity error for '{name}': invalid literal for int() with base 10: '{value}'")
+            print(f"Quantity error for '{name}': "
+                  f"invalid literal for int() with base 10: '{value}'")
         else:
             dictionary[name] = value
             my_list.append(name)
@@ -65,23 +67,23 @@ def valid_list() -> dict:
     return dictionary
 
 
-def maxindex(dictionary: dict) -> int:
+def maxindex(dictionary: dict[str, str]) -> int:
     values = list(dictionary.values())
     ma = 0
     i = 1
     while i < len(dictionary):
-        if values[i] > values[ma]:
+        if int(values[i]) > int(values[ma]):
             ma = i
         i += 1
     return ma
 
 
-def minindex(dictionary: dict) -> int:
+def minindex(dictionary: dict[str, str]) -> int:
     values = list(dictionary.values())
     mi = 0
     i = 1
     while i < len(dictionary):
-        if values[i] < values[mi]:
+        if int(values[i]) < int(values[mi]):
             mi = i
         i += 1
     return mi
@@ -90,19 +92,20 @@ def minindex(dictionary: dict) -> int:
 if __name__ == "__main__":
     print("=== Inventory System Analysis ===")
     dictionary = valid_list()
-    keys = list(dictionary.keys())
-    values = list(dictionary.values())
-    somme = 0
-    for count in dictionary.values():
-        somme += int(count)
-    print(f"Total quantity of the {len(dictionary.keys())} items: {somme}")
-    for k in dictionary.keys():
-        v = int(dictionary[k])
-        p = (v * 100) / somme
-        print(f"Item {k} represents {round(p, 1)}%")
-    ma = maxindex(dictionary)
-    mi = minindex(dictionary)
-    print(f"Item most abundant: {keys[ma]} with quantity {values[ma]}")
-    print(f"Item most abundant: {keys[mi]} with quantity {values[mi]}")
+    if len(dictionary) > 0:
+        keys = list(dictionary.keys())
+        values = list(dictionary.values())
+        somme = 0
+        for count in dictionary.values():
+            somme += int(count)
+        print(f"Total quantity of the {len(dictionary.keys())} items: {somme}")
+        for k in dictionary.keys():
+            v = int(dictionary[k])
+            p = (v * 100) / somme
+            print(f"Item {k} represents {round(p, 1)}%")
+        ma = maxindex(dictionary)
+        mi = minindex(dictionary)
+        print(f"Item most abundant: {keys[ma]} with quantity {values[ma]}")
+        print(f"Item most abundant: {keys[mi]} with quantity {values[mi]}")
     dictionary.update({"magic_item": 1})
     print(f"Updated inventory: {dictionary}")

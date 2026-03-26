@@ -9,7 +9,7 @@ achiev_list = [
 ]
 
 
-def gen_player_achievements() -> set:
+def gen_player_achievements() -> set[str]:
     achiev_number = random.randint(4, 8)
     player_achiev = random.sample(achiev_list, achiev_number)
     return set(player_achiev)
