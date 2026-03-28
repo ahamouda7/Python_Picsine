@@ -31,7 +31,7 @@ def isnumber(item: str) -> int:
     return 1
 
 
-def isvalid(item: str, my_list: list[str]) -> int:
+def isvalid(item: str, my_list: list) -> int:
     i = 0
     if my_item(item) in my_list:
         return 2
@@ -44,9 +44,9 @@ def isvalid(item: str, my_list: list[str]) -> int:
     return 1
 
 
-def valid_list() -> dict[str, str]:
+def valid_list() -> dict:
     i = 1
-    my_list = []
+    my_list: list = []
     dictionary = {}
     while i < len(sys.argv):
         name = my_item(sys.argv[i])
@@ -67,7 +67,7 @@ def valid_list() -> dict[str, str]:
     return dictionary
 
 
-def maxindex(dictionary: dict[str, str]) -> int:
+def maxindex(dictionary: dict) -> int:
     values = list(dictionary.values())
     ma = 0
     i = 1
@@ -78,7 +78,7 @@ def maxindex(dictionary: dict[str, str]) -> int:
     return ma
 
 
-def minindex(dictionary: dict[str, str]) -> int:
+def minindex(dictionary: dict) -> int:
     values = list(dictionary.values())
     mi = 0
     i = 1

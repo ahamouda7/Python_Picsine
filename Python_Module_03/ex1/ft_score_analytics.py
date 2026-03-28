@@ -1,7 +1,7 @@
 import sys
 
 
-def scores_list() -> int:
+def scores_list() -> list:
     scores = []
     for score in sys.argv[1:]:
         try:

@@ -5,14 +5,14 @@ class InvalidSyntax(Exception):
     pass
 
 
-def length(a_list: list[str]) -> int:
+def length(a_list: list) -> int:
     len = 0
     for i in a_list:
         len += 1
     return len
 
 
-def get_player_pos() -> tuple[float, float, float]:
+def get_player_pos() -> tuple:
     error = 1
     while error == 1:
         try:
@@ -31,7 +31,7 @@ def get_player_pos() -> tuple[float, float, float]:
                     float(cord)
                 except ValueError:
                     print(f"Error on parameter '{cord}': "
-                          "could not convert string to float: '{cord}'")
+                          f"could not convert string to float: '{cord}'")
                     error = 1
                     break
         except InvalidSyntax as e:
