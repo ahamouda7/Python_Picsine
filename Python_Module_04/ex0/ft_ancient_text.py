@@ -11,13 +11,13 @@ if __name__ == "__main__":
 
         print("RECOVERED DATA:")
         print(file.read())
-        file.close()
         print()
 
         print("Data recovery complete. Storage unit disconnected.")
-    except FileNotFoundError:
-        print("ERROR: Storage vault not found. Run data generator first.")
-    except PermissionError:
-        print("file doesn't have the premission to be read")
+
+    except Exception as e:
+        print(f"ERROR: {e}")
+
+    finally:
         if file:
             file.close()

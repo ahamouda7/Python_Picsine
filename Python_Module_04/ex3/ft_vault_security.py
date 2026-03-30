@@ -4,7 +4,7 @@ if __name__ == "__main__":
 
     try:
         print("Initiating secure vault access...")
-        with open("vault.txt", "r+") as file:
+        with open("classified_data.txt", "r+") as file:
             print("Vault connection established with failsafe protocols")
             print()
 
@@ -22,5 +22,6 @@ if __name__ == "__main__":
             print()
 
         print("All vault operations completed with maximum security.")
+
     except Exception as e:
         print(f"Error: {e}")
