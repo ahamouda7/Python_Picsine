@@ -1,6 +1,6 @@
-def access_archive(file_name: str, access_type: str) -> None:
+def access_archive(file_name: str, alert_type: str) -> None:
     try:
-        print(f"{access_type}: Attempting access to '{file_name}'...")
+        print(f"{alert_type}: Attempting access to '{file_name}'...")
         with open(file_name):
             print(
                 "SUCCESS: Archive recovered - Knowledge preserved for humanity"
