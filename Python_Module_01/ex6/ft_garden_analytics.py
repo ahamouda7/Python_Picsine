@@ -34,10 +34,10 @@ class GardenManager:
     total_gardens = 0
 
     class GardenStats:
-        def __init__(self, plants: list) -> None:
+        def __init__(self, plants: list[Plant]) -> None:
             self.plants = plants
 
-        def count_types(self) -> tuple:
+        def count_types(self) -> tuple[int, int, int]:
             reg = 0
             flow = 0
             prize = 0
@@ -52,7 +52,7 @@ class GardenManager:
 
     def __init__(self, owner: str) -> None:
         self.owner = owner
-        self.plants = []
+        self.plants: list[Plant] = []
         GardenManager.total_gardens += 1
 
     def add_plant(self, plant: Plant) -> None:

@@ -5,14 +5,14 @@ class InvalidSyntax(Exception):
     pass
 
 
-def length(a_list: list) -> int:
+def length(a_list: list[str]) -> int:
     len = 0
-    for i in a_list:
+    for _ in a_list:
         len += 1
     return len
 
 
-def get_player_pos() -> tuple:
+def get_player_pos() -> tuple[float, float, float]:
     error = 1
     while error == 1:
         try:
@@ -23,7 +23,7 @@ def get_player_pos() -> tuple:
             cord_list = []
             for cord in user_input:
                 cord_list.append(float(cord.strip()))
-            coordinates = tuple(cord_list)
+            coordinates = (cord_list[0], cord_list[1], cord_list[2])
             error = 0
         except ValueError:
             for cord in user_input:

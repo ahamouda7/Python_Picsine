@@ -11,7 +11,7 @@ class ValueError(GardenError):
 
 
 class GardenManager:
-    plants = []
+    plants: list[str] = []
 
     def __init__(self, name: str, water: int, sun: int) -> None:
         self.name = name
@@ -102,7 +102,7 @@ def test_garden_management() -> None:
 
     print("Watering plants...")
     print("Opening watering system")
-    GardenManager.water_plants(GardenManager, [tomato.name, lettuce.name])
+    tomato.water_plants([tomato.name, lettuce.name])
     print()
 
     print("Checking plant health...")

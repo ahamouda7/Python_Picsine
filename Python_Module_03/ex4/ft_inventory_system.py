@@ -31,7 +31,7 @@ def isnumber(item: str) -> int:
     return 1
 
 
-def isvalid(item: str, my_list: list) -> int:
+def isvalid(item: str, my_list: list[str]) -> int:
     i = 0
     if my_item(item) in my_list:
         return 2
@@ -44,9 +44,9 @@ def isvalid(item: str, my_list: list) -> int:
     return 1
 
 
-def valid_list() -> dict:
+def valid_list() -> dict[str, str]:
     i = 1
-    my_list: list = []
+    my_list: list[str] = []
     dictionary = {}
     while i < len(sys.argv):
         name = my_item(sys.argv[i])
@@ -67,7 +67,7 @@ def valid_list() -> dict:
     return dictionary
 
 
-def maxindex(dictionary: dict) -> int:
+def maxindex(dictionary: dict[str, str]) -> int:
     values = list(dictionary.values())
     ma = 0
     i = 1
@@ -78,7 +78,7 @@ def maxindex(dictionary: dict) -> int:
     return ma
 
 
-def minindex(dictionary: dict) -> int:
+def minindex(dictionary: dict[str, str]) -> int:
     values = list(dictionary.values())
     mi = 0
     i = 1
@@ -107,5 +107,5 @@ if __name__ == "__main__":
         mi = minindex(dictionary)
         print(f"Item most abundant: {keys[ma]} with quantity {values[ma]}")
         print(f"Item most abundant: {keys[mi]} with quantity {values[mi]}")
-    dictionary.update({"magic_item": 1})
+    dictionary.update({"magic_item": "1"})
     print(f"Updated inventory: {dictionary}")
