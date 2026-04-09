@@ -44,10 +44,12 @@ class NumericProcessor(DataProcessor):
         if isinstance(data, List):
             for i in data:
                 self.data_processed.append(i)
-                self.str_data_processed.append(str(i))
+                i = str(i)
+                self.str_data_processed.append(i)
         else:
             self.data_processed.append(data)
-            self.str_data_processed.append(str(data))
+            data = str(data)
+            self.str_data_processed.append(data)
 
 
 class TextProcessor(DataProcessor):
@@ -99,13 +101,13 @@ class LogProcessor(DataProcessor):
 
         if isinstance(data, List):
             for d in data:
-                log_string = f"{d['log_level']}: {d['log_message']}"
-                self.data_processed.append(data)
-                self.str_data_processed.append(log_string)
+                self.data_processed.append(d)
+                d = f"{d['log_level']}: {d['log_message']}"
+                self.str_data_processed.append(d)
         else:
-            log_string = f"{data['log_level']}: {data['log_message']}"
-            self.str_data_processed.append(log_string)
             self.data_processed.append(data)
+            data = f"{data['log_level']}: {data['log_message']}"
+            self.str_data_processed.append(data)
 
 
 numeric1 = NumericProcessor()
