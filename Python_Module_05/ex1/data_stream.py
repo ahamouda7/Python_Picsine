@@ -18,8 +18,9 @@ class DataProcessor(ABC):
 
     def output(self) -> tuple[int, str]:
         oldest_data = self.str_data_processed.pop(0)
+        current_rank = self.rank
         self.rank += 1
-        return (self.rank, oldest_data)
+        return (current_rank, oldest_data)
 
 
 class NumericProcessor(DataProcessor):
@@ -146,7 +147,7 @@ class DataStream:
 
             print(
                 f"{proc_type} Processor: total {len(proc.data_processed)} "
-                f"items processed, remaining {len(proc.str_data_processed)}"
+                f"items processed, remaining {len(proc.str_data_processed)} "
                 "on processor"
             )
 
@@ -192,7 +193,6 @@ if __name__ == "__main__":
     ]
     print(f"Send first batch of data on stream: {data_on_stream}")
     stream.process_stream(data_on_stream)
-    print()
 
     print("== DataStream statistics ==")
     stream.print_processors_stats()
@@ -220,4 +220,3 @@ if __name__ == "__main__":
     log.output()
     print("== DataStream statistics ==")
     stream.print_processors_stats()
-    print()

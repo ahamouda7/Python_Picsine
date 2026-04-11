@@ -18,8 +18,9 @@ class DataProcessor(ABC):
 
     def output(self) -> tuple[int, str]:
         oldest_data = self.str_data_processed.pop(0)
+        current_rank = self.rank
         self.rank += 1
-        return (self.rank, oldest_data)
+        return (current_rank, oldest_data)
 
 
 class NumericProcessor(DataProcessor):
@@ -122,7 +123,7 @@ class CSV:
         for o in data:
             csv_output += o[1]
             if o != data[-1]:
-                csv_output += ', '
+                csv_output += ','
         print(csv_output)
 
 
@@ -133,7 +134,7 @@ class JSON:
         for o in data:
             json_output += f'"item_{o[0]}": "{o[1]}"'
             if o != data[-1]:
-                json_output += ', '
+                json_output += ','
         json_output += '}'
         print(json_output)
 
@@ -278,7 +279,7 @@ if __name__ == "__main__":
     print()
 
     print("Send 5 processed data from each processor to a JSON plugin:")
-    stream.output_pipeline(3, json)
+    stream.output_pipeline(5, json)
     print()
 
     print("== DataStream statistics ==")

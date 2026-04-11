@@ -18,8 +18,9 @@ class DataProcessor(ABC):
 
     def output(self) -> tuple[int, str]:
         oldest_data = self.str_data_processed.pop(0)
+        current_rank = self.rank
         self.rank += 1
-        return (self.rank, oldest_data)
+        return (current_rank, oldest_data)
 
 
 class NumericProcessor(DataProcessor):
@@ -124,56 +125,56 @@ if __name__ == "__main__":
 
     print("Testing Numeric Processor...")
 
-    print(f"Trying to validate input '42': {numeric1.validate(42)}")
-    print(f"Trying to validate input 'Hello': {numeric1.validate("Hello")}")
+    print(f" Trying to validate input '42': {numeric1.validate(42)}")
+    print(f" Trying to validate input 'Hello': {numeric1.validate("Hello")}")
 
-    print("Test invalid ingestion of string 'foo' without prior validation:")
+    print(" Test invalid ingestion of string 'foo' without prior validation:")
     try:
         numeric1.ingest("foo")
     except Exception as e:
-        print(f"Got exception: {e}")
+        print(f" Got exception: {e}")
 
     numeric2.ingest(1)
     numeric2.ingest(2)
     numeric2.ingest(3)
     numeric2.ingest(4)
     numeric2.ingest(5)
-    print(f"Processing data: {numeric2.data_processed}")
+    print(f" Processing data: {numeric2.data_processed}")
 
-    print("Extracting 3 values...")
+    print(" Extracting 3 values...")
     new_output = numeric2.output()
-    print(f"Numeric value {new_output[0]}: {new_output[1]}")
+    print(f" Numeric value {new_output[0]}: {new_output[1]}")
     new_output = numeric2.output()
-    print(f"Numeric value {new_output[0]}: {new_output[1]}")
+    print(f" Numeric value {new_output[0]}: {new_output[1]}")
     new_output = numeric2.output()
-    print(f"Numeric value {new_output[0]}: {new_output[1]}")
+    print(f" Numeric value {new_output[0]}: {new_output[1]}")
 
     print()
 
     print("Testing Text Processor...")
 
-    print(f"Trying to validate input '42': {text1.validate(42)}")
+    print(f" Trying to validate input '42': {text1.validate(42)}")
 
     text2.ingest("Hello")
     text2.ingest("Nexus")
     text2.ingest("World")
-    print(f"Processing data: {text2.data_processed}")
+    print(f" Processing data: {text2.data_processed}")
 
-    print("Extracting 1 values...")
+    print(" Extracting 1 values...")
     new_output = text2.output()
-    print(f"Text value {new_output[0]}: {new_output[1]}")
+    print(f" Text value {new_output[0]}: {new_output[1]}")
 
     print()
 
     print("Testing Log Processor...")
-    print(f"Trying to validate input 'Hello': {log1.validate("Hello")}")
+    print(f" Trying to validate input 'Hello': {log1.validate("Hello")}")
 
     log2.ingest({"log_level": "NOTICE", "log_message": "Connection to server"})
     log2.ingest({"log_level": "ERROR", "log_message": "Unauthorized access!!"})
-    print(f"Processing data: {log2.data_processed}")
+    print(f" Processing data: {log2.data_processed}")
 
-    print("Extracting 2 entries...")
+    print(" Extracting 2 entries...")
     new_output = log2.output()
-    print(f"Log entry {new_output[0]}: {new_output[1]}")
+    print(f" Log entry {new_output[0]}: {new_output[1]}")
     new_output = log2.output()
-    print(f"Log entry {new_output[0]}: {new_output[1]}")
+    print(f" Log entry {new_output[0]}: {new_output[1]}")
