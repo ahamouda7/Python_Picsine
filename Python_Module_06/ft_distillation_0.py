@@ -1,4 +1,4 @@
-from alchemy.potions import *
+from alchemy.potions import strength_potion, healing_potion
 
 
 if __name__ == "__main__":
