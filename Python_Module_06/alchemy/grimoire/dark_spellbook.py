@@ -8,5 +8,5 @@ def dark_spell_allowed_ingredients() -> List[str]:
 
 def dark_spell_record(spell_name: str, ingredients: str) -> str:
     return (
-        f"spell recorded: {spell_name} ({validate_ingredients(ingredients)})"
+        f"Spell recorded: {spell_name} ({validate_ingredients(ingredients)})"
         )
