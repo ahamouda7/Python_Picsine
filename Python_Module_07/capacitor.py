@@ -1,0 +1,40 @@
+from ex1 import HealingCreatureFactory, TransformCreatureFactory
+
+heal = HealingCreatureFactory()
+sproutling_class = heal.create_base()
+bloomelle_class = heal.create_evolved()
+heal_base = sproutling_class("Sproutling", "Grass")
+heal_evolved = bloomelle_class("Bloomelle", "Grass/Fairy")
+
+trans = TransformCreatureFactory()
+shiftling_class = trans.create_base()
+morphagon_class = trans.create_evolved()
+trans_base = shiftling_class("Shiftling", "Normal")
+trans_evolved = morphagon_class("Morphagon", "Normal")
+
+
+if __name__ == "__main__":
+    print("Testing Creature with healing capability")
+    print(" base:")
+    print(heal_base.describe())
+    print(heal_base.attack())
+    print(heal_base.heal())
+    print(" evolved:")
+    print(heal_evolved.describe())
+    print(heal_evolved.attack())
+    print(heal_evolved.heal("itself and others"))
+    print()
+
+    print("Testing Creature with transform capability")
+    print(" base:")
+    print(trans_base.describe())
+    print(trans_base.attack())
+    print(trans_base.transform())
+    print(trans_base.attack())
+    print(trans_base.revert())
+    print(" evolved:")
+    print(trans_evolved.describe())
+    print(trans_evolved.attack())
+    print(trans_evolved.transform())
+    print(trans_evolved.attack())
+    print(trans_evolved.revert())
