@@ -1,5 +1,5 @@
 from ex0 import FlameFactory, AquaFactory
-from ex0.factory import CreatureFactory
+from ex0.normal import CreatureFactory
 
 
 def verify_creature(factory: CreatureFactory):

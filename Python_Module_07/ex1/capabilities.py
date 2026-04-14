@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ex0.factory import Creature, CreatureFactory
+from ..ex0.normal import Creature, CreatureFactory
 
 
 class HealCapability(ABC):
@@ -38,7 +38,7 @@ class TransformCapability(ABC):
 
 
 class Shiftling(Creature, TransformCapability):
-    def __init__(self, name, cr_type):
+    def __init__(self, name: str, cr_type: str) -> None:
         Creature.__init__(self, name, cr_type)
         TransformCapability.__init__(self)
 
@@ -57,7 +57,7 @@ class Shiftling(Creature, TransformCapability):
 
 
 class Morphagon(Creature, TransformCapability):
-    def __init__(self, name, cr_type):
+    def __init__(self, name: str, cr_type: str) -> None:
         Creature.__init__(self, name, cr_type)
         TransformCapability.__init__(self)
 
