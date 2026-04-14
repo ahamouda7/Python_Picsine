@@ -1,20 +1,20 @@
 from abc import ABC, abstractmethod
-from ..ex0.normal import Creature
-from ..ex1.capabilities import TransformCapability, HealCapability
+from ex0.normal import Creature
+from ex1.capabilities import TransformCapability, HealCapability
 
 
 class BattleStrategy(ABC):
     @abstractmethod
-    def act():
+    def act(self, cr: Creature) -> None:
         pass
 
     @abstractmethod
-    def is_valid() -> bool:
+    def is_valid(self, cr: Creature) -> bool:
         pass
 
 
 class NormalStrategy(BattleStrategy):
-    def act(self, cr: Creature):
+    def act(self, cr: Creature) -> None:
         if not self.is_valid(cr):
             raise Exception(
                 f"Invalid Creature '{cr.name}' for this aggressive strategy"
@@ -27,7 +27,7 @@ class NormalStrategy(BattleStrategy):
 
 
 class AggressiveStrategy(BattleStrategy):
-    def act(self, cr: Creature):
+    def act(self, cr: Creature) -> None:
         if not self.is_valid(cr):
             raise Exception(
                 f"Invalid Creature '{cr.name}' for this aggressive strategy"

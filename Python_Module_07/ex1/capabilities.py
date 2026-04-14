@@ -1,5 +1,6 @@
+from typing import Type
 from abc import ABC, abstractmethod
-from ..ex0.normal import Creature, CreatureFactory
+from ex0.normal import Creature, CreatureFactory
 
 
 class HealCapability(ABC):
@@ -76,16 +77,16 @@ class Morphagon(Creature, TransformCapability):
 
 
 class HealingCreatureFactory(CreatureFactory):
-    def create_base(self) -> Sproutling:
+    def create_base(self) -> Type[Sproutling]:
         return Sproutling
 
-    def create_evolved(self) -> Bloomelle:
+    def create_evolved(self) -> Type[Bloomelle]:
         return Bloomelle
 
 
 class TransformCreatureFactory(CreatureFactory):
-    def create_base(self) -> Shiftling:
+    def create_base(self) -> Type[Shiftling]:
         return Shiftling
 
-    def create_evolved(self) -> Morphagon:
+    def create_evolved(self) -> Type[Morphagon]:
         return Morphagon

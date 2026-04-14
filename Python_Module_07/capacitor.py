@@ -10,7 +10,7 @@ trans = TransformCreatureFactory()
 shiftling_class = trans.create_base()
 morphagon_class = trans.create_evolved()
 trans_base = shiftling_class("Shiftling", "Normal")
-trans_evolved = morphagon_class("Morphagon", "Normal")
+trans_evolved = morphagon_class("Morphagon", "Normal/Dragon")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Type
 
 
 class Creature(ABC):
@@ -36,25 +37,25 @@ class Torragon(Creature):
 
 class CreatureFactory(ABC):
     @abstractmethod
-    def create_base(self) -> Creature:
+    def create_base(self) -> Type[Creature]:
         pass
 
     @abstractmethod
-    def create_evolved(self) -> Creature:
+    def create_evolved(self) -> Type[Creature]:
         pass
 
 
 class FlameFactory(CreatureFactory):
-    def create_base(self) -> Flameling:
+    def create_base(self) -> Type[Flameling]:
         return Flameling
 
-    def create_evolved(self) -> Pyrodon:
+    def create_evolved(self) -> Type[Pyrodon]:
         return Pyrodon
 
 
 class AquaFactory(CreatureFactory):
-    def create_base(self) -> Aquabub:
+    def create_base(self) -> Type[Aquabub]:
         return Aquabub
 
-    def create_evolved(self) -> Torragon:
+    def create_evolved(self) -> Type[Torragon]:
         return Torragon

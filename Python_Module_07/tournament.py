@@ -49,8 +49,8 @@ def attack_strategy(cr_base: Creature) -> None:
         print(cr_base.attack())
         print(cr_base.heal())
     else:
-        print(cr_base.attack())
         print(cr_base.transform())
+        print(cr_base.attack())
         print(cr_base.revert())
 
 
