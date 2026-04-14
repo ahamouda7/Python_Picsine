@@ -3,7 +3,7 @@ from typing import Type
 
 
 class Creature(ABC):
-    def __init__(self, name, cr_type):
+    def __init__(self, name: str, cr_type: str) -> None:
         self.name = name
         self.cr_type = cr_type
 

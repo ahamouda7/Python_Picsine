@@ -3,7 +3,7 @@ from ex0 import FlameFactory, AquaFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex2 import NormalStrategy, AggressiveStrategy, DefensiveStrategy
 from ex0.normal import Creature, CreatureFactory, Flameling, Aquabub
-from ex1.capabilities import Sproutling
+from ex1.capabilities import HealCapability, TransformCapability
 from ex2.strategies import BattleStrategy
 
 
@@ -43,12 +43,12 @@ def get_attributes(creature: CreatureFactory) -> Tuple[str, str]:
 
 
 def attack_strategy(cr_base: Creature) -> None:
-    if isinstance(cr_base, Flameling) or isinstance(cr_base, Aquabub):
+    if isinstance(cr_base, (Flameling, Aquabub)):
         print(cr_base.attack())
-    elif isinstance(cr_base, Sproutling):
+    elif isinstance(cr_base, HealCapability):
         print(cr_base.attack())
         print(cr_base.heal())
-    else:
+    elif isinstance(cr_base, TransformCapability):
         print(cr_base.transform())
         print(cr_base.attack())
         print(cr_base.revert())

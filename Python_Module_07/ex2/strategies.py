@@ -40,7 +40,7 @@ class AggressiveStrategy(BattleStrategy):
 
 
 class DefensiveStrategy(BattleStrategy):
-    def act(self, cr: Creature):
+    def act(self, cr: Creature) -> None:
         if not self.is_valid(cr):
             raise Exception(
                 f"Invalid Creature '{cr.name}' for this aggressive strategy"

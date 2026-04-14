@@ -2,7 +2,7 @@ from ex0 import FlameFactory, AquaFactory
 from ex0.normal import CreatureFactory
 
 
-def verify_creature(factory: CreatureFactory):
+def verify_creature(factory: CreatureFactory) -> None:
     factory_base_class = factory.create_base()
     factory_evolved_class = factory.create_evolved()
 
