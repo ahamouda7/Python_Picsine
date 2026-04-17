@@ -1,6 +1,7 @@
 import importlib.util
 
-def check_dependencies():
+
+def check_dependencies() -> bool:
     packages = ["pandas", "numpy", "matplotlib"]
     all_good = True
 
@@ -17,7 +18,8 @@ def check_dependencies():
 
     return all_good
 
-def run_matrix_analysis():
+
+def run_matrix_analysis() -> None:
     import numpy
     import pandas
     import matplotlib.pyplot as matplot
@@ -46,7 +48,7 @@ def compare_package_managers() -> None:
     print("\n" + "="*62)
     print(" MATRIX ARCHITECTURE: PIP vs POETRY")
     print("="*62)
-    
+
     print("[pip]: The Drone Installer")
     print("  -> Installs requested packages (requirements.txt)")
     print("     without checking if they perfectly match each other.")
@@ -61,7 +63,7 @@ def compare_package_managers() -> None:
     print("="*62)
 
 
-def main():
+def main() -> None:
     if check_dependencies():
         run_matrix_analysis()
     else:
@@ -77,6 +79,7 @@ def main():
         print("="*18)
 
     compare_package_managers()
+
 
 if __name__ == "__main__":
     main()

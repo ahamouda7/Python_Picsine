@@ -2,7 +2,9 @@ import sys
 import os
 import site
 
-def main():
+
+def main() -> None:
+    print()
     if sys.prefix == sys.base_prefix:
         print("MATRIX STATUS: You're still plugged in\n")
         print(f"Current Python: {sys.executable}")
@@ -24,6 +26,7 @@ def main():
         print("the global system.\n")
         print("Package installation path:")
         print(site.getsitepackages()[0])
+
 
 if __name__ == "__main__":
     main()
