@@ -1,4 +1,3 @@
-import sys
 import importlib.util
 
 def check_dependencies():
@@ -10,7 +9,7 @@ def check_dependencies():
 
     for pkg in packages:
         if importlib.util.find_spec(pkg) is None:
-            print(f"[MISSING] {pkg} is not installed.")
+            print(f"[KO] {pkg} is not installed.")
             all_good = False
         else:
             module = importlib.import_module(pkg)
@@ -19,38 +18,65 @@ def check_dependencies():
     return all_good
 
 def run_matrix_analysis():
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
+    import numpy
+    import pandas
+    import matplotlib.pyplot as matplot
 
     print("\nAnalyzing Matrix data...")
     print("Processing 1000 data points...")
 
-    matrix_data = np.random.rand(1000)
-    df = pd.DataFrame(matrix_data, columns=['Matrix_Signal'])
+    matrix_data = numpy.random.rand(1000)
+    pandas_df = pandas.DataFrame(matrix_data)
 
     print("Generating visualization...")
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(df.index, df['Matrix_Signal'], color='green', linewidth=0.5)
-    plt.title("Matrix Signal Analysis")
-    plt.xlabel("Data Points")
-    plt.ylabel("Signal Strength")
+    matplot.figure(figsize=(10, 6))
+    matplot.plot(pandas_df.index, pandas_df, color='green', linewidth=0.5)
+    matplot.title("Matrix Signal Analysis")
+    matplot.xlabel("Data Points")
+    matplot.ylabel("Signal Strength")
 
-    plt.savefig("matrix_analysis.png")
+    matplot.savefig("matrix_analysis.png")
 
     print("\nAnalysis complete!")
     print("Results saved to: matrix_analysis.png")
+
+
+def compare_package_managers() -> None:
+    print("\n" + "="*62)
+    print(" MATRIX ARCHITECTURE: PIP vs POETRY")
+    print("="*62)
+    
+    print("[pip]: The Drone Installer")
+    print("  -> Installs requested packages (requirements.txt)")
+    print("     without checking if they perfectly match each other.")
+    print("  -> Can break projects by installing new versions)")
+    print("     of hidden dependencies.")
+
+    print("[poetry]: The Architect")
+    print("  -> Smarter than pip. Checks if all packages and the Python")
+    print("     version are suitable together before start to download.")
+    print("  -> Uses a 'poetry.lock' file: a 100% mathematically")
+    print("     identical snapshot of your system.")
+    print("="*62)
+
 
 def main():
     if check_dependencies():
         run_matrix_analysis()
     else:
-        print("\nERROR: Missing required programs.")
-        print("To load your weapons, run:")
-        print("pip install -r requirements.txt")
-        print("OR")
-        print("poetry install")
+        print("\n[ERROR]: Missing required programs.")
+
+        print(" Hint: To load your all packages, run:")
+        print("="*39)
+        print("$ pip install -r requirements.txt")
+        print("="*35)
+        print(" or:")
+        print("="*18)
+        print("$ poetry install")
+        print("="*18)
+
+    compare_package_managers()
 
 if __name__ == "__main__":
     main()
