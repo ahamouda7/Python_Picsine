@@ -20,9 +20,12 @@ def check_dependencies() -> bool:
 
 
 def run_matrix_analysis() -> None:
-    import numpy
-    import pandas
-    import matplotlib.pyplot as matplot
+    try:
+        import numpy  # type: ignore
+        import pandas  # type: ignore
+        import matplotlib.pyplot as matplot  # type: ignore
+    except ImportError:
+        print("[ERROR] A package didn't install")
 
     print("\nAnalyzing Matrix data...")
     print("Processing 1000 data points...")
