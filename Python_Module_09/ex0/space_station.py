@@ -56,7 +56,9 @@ def main() -> None:
             # I can use: "last_maintenance=datetime.fromtimestamp(1776522600)"
             )
     except ValidationError as e:
-        print(e.errors()[0]["msg"], "\n")
+        for error in e.errors():
+            print(error["msg"])
+        print()
 
 
 if __name__ == "__main__":
