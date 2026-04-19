@@ -85,10 +85,11 @@ def main() -> None:
             message_received="Greetings from Zeta Reticuli",
         )
     except ValidationError as e:
-        msg = e.errors()[0]["msg"]
-        if msg.startswith("Value error, "):
-            msg = msg.replace("Value error, ", "")
-        print(msg, "\n")
+        for error in e.errors():
+            if error["msg"].startswith("Value error, "):
+                error["msg"] = error["msg"].replace("Value error, ", "")
+            print(error["msg"])
+        print()
 
 
 if __name__ == "__main__":
