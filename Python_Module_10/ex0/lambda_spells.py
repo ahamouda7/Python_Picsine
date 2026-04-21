@@ -21,14 +21,20 @@ def spell_transformer(spells: List[str]) -> List[str]:
     return spells
 
 
-def mage_stats(mages: List[Dict[str, str | int]]) -> Dict[str, int | float]:
+def mage_stats(
+        mages: List[Dict[str, str | int]]
+        ) -> Dict[str, float | str | int]:
     powers = list(map(lambda p: int(p["power"]), mages))
 
-    mini = min(powers)
-    maxi = max(powers)
+    mini = min(mages, key=lambda p: int(p["power"]))
+    maxi = max(mages, key=lambda p: int(p["power"]))
     average = round(sum(powers) / len(powers), 2)
 
-    states = {"max_power": maxi, "min_power": mini, "avg_power": average}
+    states = {
+        "max_power": maxi["power"],
+        "min_power": mini["power"],
+        "avg_power": average
+        }
     return states
 
 
@@ -41,11 +47,15 @@ if __name__ == "__main__":
     sorted_data = artifact_sorter(artifacts_data)
     first = sorted_data[0]
     second = sorted_data[1]
-
     print(
         f"{first['name']} ({first['power']} power) "
         f"comes before {second['name']} ({second['power']} power)"
     )
+
+    print("\nTesting power filter...")
+    filtered = power_filter(artifacts_data, 90)
+    for f in filtered:
+        print(f)
 
     spells_data = ["fireball", "heal", "shield"]
     print("\nTesting spell transformer...")
@@ -53,3 +63,8 @@ if __name__ == "__main__":
     for s in spells:
         print(s, end=" ")
     print()
+
+    print("\nTesting mage stats...")
+    stats = mage_stats(artifacts_data)
+    for stat, value in stats.items():
+        print(f"{stat} = {value}")

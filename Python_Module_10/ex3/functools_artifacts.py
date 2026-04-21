@@ -69,9 +69,9 @@ def main() -> None:
         print(f"Sum: {spell_reducer(spells, "add")}")
         print(f"Product: {spell_reducer(spells, "multiply")}")
         print(f"Max: {spell_reducer(spells, "max")}")
+        print(spell_reducer(spells, "unknown"))
     except ValueError as e:
-        print(f"{red}ERROR:{reset}", e)
-        return
+        print(f" {red}Error:{reset}", e)
 
     print("\nTesting memoized fibonacci...")
     print(f"Fib(0): {memoized_fibonacci(0)}")
