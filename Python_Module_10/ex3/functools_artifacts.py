@@ -8,7 +8,7 @@ def spell_reducer(spells: List[int], operation: str) -> int:
     if not spells:
         return 0
 
-    ops = {
+    ops: Dict[str, Callable[..., int]] = {
         "add": operator.add,
         "multiply": operator.mul,
         "max": max,
@@ -22,10 +22,10 @@ def spell_reducer(spells: List[int], operation: str) -> int:
 
 def partial_enchanter(
         base_enchantment: Callable[[int, str, str], str]
-        ) -> Dict[str, Callable]:
-    encantment1 = functools.partial(base_enchantment, power=50, element="Fire")
-    encantment2 = functools.partial(base_enchantment, power=50, element="Ice")
-    encantment3 = functools.partial(base_enchantment, power=50, element="Air")
+        ) -> Dict[str, Callable[[str], str]]:
+    encantment1 = functools.partial(base_enchantment, 50, "Fire")
+    encantment2 = functools.partial(base_enchantment, 50, "Ice")
+    encantment3 = functools.partial(base_enchantment, 50, "Air")
     return {"Fire": encantment1, "Ice": encantment2, "Air": encantment3}
 
 
@@ -36,13 +36,24 @@ def memoized_fibonacci(n: int) -> int:
     return memoized_fibonacci(n - 2) + memoized_fibonacci(n - 1)
 
 
-@functools.singledispatch
-def spell(spell: Any) -> str:
-    return f"unknown spell type"
-
-
 def spell_dispatcher() -> Callable[[Any], str]:
-    pass
+    @functools.singledispatch
+    def spell(_: Any) -> str:
+        return "Unknown spell type"
+
+    @spell.register(int)
+    def _(damage: int) -> str:
+        return f"{damage} damage"
+
+    @spell.register(str)
+    def _(enchantment: str) -> str:
+        return enchantment
+
+    @spell.register(list)
+    def _(spells: List[Any]) -> str:
+        return f"{len(spells)} spells"
+
+    return spell
 
 
 def spell(power: int, element: str, target: str) -> str:
@@ -69,6 +80,11 @@ def main() -> None:
     print(f"Fib(15): {memoized_fibonacci(15)}")
 
     print("\nTesting spell dispatcher...")
+    spell = spell_dispatcher()
+    print(f"Damage spell: {spell(42)}")
+    print(f"Enchantment: {spell("fireball")}")
+    print(f"Multi-cast: {spell([1, 2, 3])}")
+    print(spell(2.3))
 
 
 if __name__ == "__main__":
