@@ -4,7 +4,7 @@ if __name__ == "__main__":
         print()
 
         file = None
-        file = open("ancient_fragment.txt", "r")
+        file = open("ancient_fragment.txt")  # "r" is by default
         print(f"Accessing Storage Vault: {file.name}")
         print("Connection established...")
         print()
