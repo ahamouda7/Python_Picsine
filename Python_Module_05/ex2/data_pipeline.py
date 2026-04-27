@@ -179,7 +179,7 @@ class DataStream:
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
         for proc in self.registered_processors:
             basket = []
-            for i in range(nb):
+            for _ in range(nb):
                 if len(proc.str_data_processed) > 0:
                     new_output = proc.output()
                     basket.append(new_output)

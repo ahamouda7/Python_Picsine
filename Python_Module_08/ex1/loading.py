@@ -21,9 +21,9 @@ def check_dependencies() -> bool:
 
 def run_matrix_analysis() -> None:
     try:
-        import numpy  # type: ignore
-        import pandas  # type: ignore
-        import matplotlib.pyplot as matplot  # type: ignore
+        import numpy
+        import pandas
+        import matplotlib.pyplot as matplot
     except ImportError:
         print("[ERROR] A package didn't install")
 
