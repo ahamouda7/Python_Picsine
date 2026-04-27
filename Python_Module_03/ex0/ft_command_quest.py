@@ -2,8 +2,7 @@ import sys
 
 
 def print_args() -> None:
-    i = 1
-    while i < len(sys.argv):
+    for i in range(1, len(sys.argv)):
         print(f"Argument {i}: {sys.argv[i]}")
         i += 1
 
